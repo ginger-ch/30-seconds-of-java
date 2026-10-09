@@ -24,6 +24,7 @@
 
 package algorithm;
 
+
 /**
  * BinarySearchIn2dArraySnippet.
  */
