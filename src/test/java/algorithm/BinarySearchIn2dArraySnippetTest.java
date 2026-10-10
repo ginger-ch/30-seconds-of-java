@@ -24,25 +24,77 @@
 
 package algorithm;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for 30 Seconds of Java code library.
  */
+class BinarySearchIn2dArraySnippetTest {
 
-public class BinarySearchIn2dArraySnippetTest {
-  /**
-  * Test for {@link BinarySearchIn2dArraySnippet #BinarySearchIn2dArraySnippet(int[][],int)}.
-  */
   @Test
-    void testBinarySearchIn2dArraySnippetTest() {
-    int[][] arr1 = {{3, 4, 7, 9}, {12, 24, 26, 29}, {34, 55, 88, 99}, {100, 189, 232, 234}};
-    int[] ans1 = {1, 2};
-    Assertions assertions  = null;
-    Assertions.assertArrayEquals(ans1, BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr1, 26));
-    int[][] arr2 = {{3, 4, 7, 9}, {12, 24, 26, 29}, {34, 55, 88, 99}, {100, 189, 232, 234}};
-    int[] ans2 = {-1, -1};
-    Assertions.assertArrayEquals(ans2, BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr2, 69));
+  void testConstructor() {
+    assertNotNull(new BinarySearchIn2dArraySnippet());
+  }
+
+  /**
+   * Tests for {@link BinarySearchIn2dArraySnippet#binarySearchIn2darr(int[][], int)}.
+   */
+  @Test
+  void testBinarySearchIn2darr() {
+    int[][] arr = {
+      {3, 4, 7, 9},
+      {12, 24, 26, 29},
+      {34, 55, 88, 99},
+      {100, 189, 232, 234}
+    };
+
+    // Original tests
+    assertArrayEquals(new int[]{1, 2},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 26));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 69));
+
+    // rows == 1 branch
+    int[][] twoRows = {{1, 3, 5, 7}, {10, 20, 30, 40}};
+    assertArrayEquals(new int[]{0, 1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(twoRows, 3));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(twoRows, 6));
+
+    // Found at rstart at cmid
+    assertArrayEquals(new int[]{1, 1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 24));
+
+    // Fallthrough branches and edge cases
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 2));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 30));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 300));
+
+    // Test matrix for rend at cmid
+    int[][] small = {
+      {1, 2, 3},
+      {4, 5, 6},
+      {7, 8, 9}
+    };
+    assertArrayEquals(new int[]{2, 1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(small, 8));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(small, 0));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(small, 10));
+
+    // Helper binarySearch direct branches
+    assertArrayEquals(new int[]{0, 1},
+        BinarySearchIn2dArraySnippet.binarySearch(arr, 4, 0, 0, 3));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearch(arr, 8, 0, 0, 3));
+    assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearch(arr, 1, 0, 0, 3));
   }
 }
