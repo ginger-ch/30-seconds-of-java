@@ -25,14 +25,20 @@
 package encoding;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class Base64EncodeSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new Base64EncodeSnippet());
+  }
+
   /**
    * Tests for {@link Base64EncodeSnippet#encodeBase64(String)}.
    */
