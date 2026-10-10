@@ -25,16 +25,22 @@
 package file;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ReadLinesSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ReadLinesSnippet());
+  }
+
   /**
    * Tests for {@link ReadLinesSnippet#readLines(String)}.
    *
@@ -47,7 +53,7 @@ class ReadLinesSnippetTest {
     assertEquals("foo", somelines.get(0));
     assertEquals("bar", somelines.get(1));
     assertEquals("baz", somelines.get(2));
-    assertThrows(IOException.class, () -> ReadLinesSnippet
-            .readLines("some/nonexistent/filename.txt"));
+    assertThrows(IOException.class, () ->
+        ReadLinesSnippet.readLines("some/nonexistent/filename.txt"));
   }
 }

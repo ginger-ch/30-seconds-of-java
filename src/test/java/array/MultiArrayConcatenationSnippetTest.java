@@ -25,29 +25,37 @@
 package array;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class MultiArrayConcatenationSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new MultiArrayConcatenationSnippet());
+  }
+
   /**
    * Tests for {@link MultiArrayConcatenationSnippet#multiArrayConcat(Object[], Object[][])}.
    */
   @Test
-  void testnArrayConcat() {
+  void testMultiArrayConcat() {
     var single = MultiArrayConcatenationSnippet.multiArrayConcat(new Integer[1]);
-    assertEquals(single.length, 1);
-    var multiple
-            = MultiArrayConcatenationSnippet.multiArrayConcat(new String[5],
-                                                              new String[12],
-                                                              new String[3],
-                                                              new String[8]);
-    assertEquals(multiple.length, 28);
-    assertThrows(NullPointerException.class, () -> MultiArrayConcatenationSnippet
-            .multiArrayConcat(null, null, null, null));
+    assertEquals(1, single.length);
+
+    var multiple = MultiArrayConcatenationSnippet.multiArrayConcat(
+        new String[5],
+        new String[12],
+        new String[3],
+        new String[8]);
+    assertEquals(28, multiple.length);
+
+    assertThrows(NullPointerException.class, () ->
+        MultiArrayConcatenationSnippet.multiArrayConcat(null, (Object[][]) null));
   }
 }

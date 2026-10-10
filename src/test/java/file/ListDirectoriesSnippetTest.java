@@ -24,17 +24,23 @@
 
 package file;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ListDirectoriesSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ListDirectoriesSnippet());
+  }
+
   /**
    * Tests for {@link ListDirectoriesSnippet#listDirectories(String)}.
    */
@@ -45,5 +51,4 @@ class ListDirectoriesSnippetTest {
     assertTrue(Arrays.asList(files).contains(new File("src/test/resources/dir1")));
     assertTrue(Arrays.asList(files).contains(new File("src/test/resources/dir2")));
   }
-
 }

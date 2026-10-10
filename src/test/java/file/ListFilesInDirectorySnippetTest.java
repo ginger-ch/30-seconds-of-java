@@ -25,6 +25,7 @@
 package file;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -33,27 +34,28 @@ import java.util.Arrays;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
-
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ListFilesInDirectorySnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ListFilesInDirectorySnippet());
+  }
+
   /**
-   * Tests for {@link ListFilesInDirectorySnippet#listFilesInDirectory(File)}.
+   * Tests for {@link ListFilesInDirectorySnippet#listFilesInDirectory(String)}.
    */
   @Test
   void testListFilesInDirectory() {
     var files = ListFilesInDirectorySnippet.listFilesInDirectory(
-        Paths.get("src", "test", "resources").toString()
-    );
+        Paths.get("src", "test", "resources").toString());
     assertEquals(2, files.length);
     var filenames = new HashSet<>(Arrays.asList(files[0].toString(), files[1].toString()));
     assertTrue(filenames.contains(
-        Paths.get("src", "test", "resources", "somelines.txt").toString()
-    ));
+        Paths.get("src", "test", "resources", "somelines.txt").toString()));
     assertTrue(filenames.contains(
-        Paths.get("src", "test", "resources", "someotherlines.txt").toString()
-    ));
+        Paths.get("src", "test", "resources", "someotherlines.txt").toString()));
   }
 }
