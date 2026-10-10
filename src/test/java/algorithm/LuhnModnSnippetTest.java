@@ -24,11 +24,14 @@
 
 package algorithm;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -39,47 +42,69 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 class LuhnModnSnippetTest {
 
+  @Test
+  void testConstructor() {
+    assertNotNull(new LuhnModnSnippet());
+  }
+
   /**
    * Tests the full process of generating and validating a check character.
    */
   @ParameterizedTest
   @MethodSource("validInputProvider")
-  public void testGenerateCheckCharacter(String input) {
+  void testGenerateCheckCharacter(String input) {
     char checkCharacter = LuhnModnSnippet.generateCheckCharacter(input);
     String fullInput = input + checkCharacter;
     assertTrue(LuhnModnSnippet.validateCheckCharacter(fullInput),
-            "Validation should pass for the generated check character.");
+        "Validation should pass for the generated check character.");
   }
 
   @ParameterizedTest
   @MethodSource("invalidInputProvider")
-  public void testInvalidInputs(String input, Character checkCharacter, boolean throwException) {
+  void testInvalidInputs(String input, Character checkCharacter, boolean throwException) {
     if (throwException) {
       assertThrows(IllegalArgumentException.class, () ->
-                      LuhnModnSnippet.generateCheckCharacter(input),
-              "Exception should be thrown for invalid input.");
+          LuhnModnSnippet.generateCheckCharacter(input),
+          "Exception should be thrown for invalid input.");
       assertThrows(IllegalArgumentException.class, () ->
-                      LuhnModnSnippet.validateCheckCharacter(input),
-              "Exception should be thrown for invalid input.");
+          LuhnModnSnippet.validateCheckCharacter(input),
+          "Exception should be thrown for invalid input.");
     } else {
       String fullInput = input + checkCharacter;
       assertFalse(LuhnModnSnippet.validateCheckCharacter(fullInput),
-              "Validation should fail for a mismatched check character.");
+          "Validation should fail for a mismatched check character.");
     }
+  }
+
+  @Test
+  void testCodePointFromCharacter() {
+    assertEquals(10, LuhnModnSnippet.codePointFromCharacter('A'));
+    assertThrows(IllegalArgumentException.class, () ->
+        LuhnModnSnippet.codePointFromCharacter('!'));
+  }
+
+  @Test
+  void testCharacterFromCodePoint() {
+    assertEquals('A', LuhnModnSnippet.characterFromCodePoint(10));
+    assertThrows(IllegalArgumentException.class, () ->
+        LuhnModnSnippet.characterFromCodePoint(-1));
+    assertThrows(IllegalArgumentException.class, () ->
+        LuhnModnSnippet.characterFromCodePoint(36));
   }
 
   private static Stream<String> validInputProvider() {
     return Stream.of(
-            "HELLO",
-            "12345",
-            "A1B2C3"
+        "HELLO",
+        "12345",
+        "A1B2C3"
     );
   }
 
   private static Stream<Arguments> invalidInputProvider() {
     return Stream.of(
-            Arguments.of("", null, true),
-            Arguments.of("WORLD", 'A', false)
+        Arguments.of("", null, true),
+        Arguments.of(null, null, true),
+        Arguments.of("WORLD", 'A', false)
     );
   }
 }
