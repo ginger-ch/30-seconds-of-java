@@ -68,15 +68,10 @@ public class ZipDirectorySnippet {
       return;
     }
     if (fileToZip.isDirectory()) {
-      if (fileName.endsWith("/")) {
-        zipOut.putNextEntry(new ZipEntry(fileName));
-        zipOut.write(new byte[0]);
-        zipOut.closeEntry();
-      } else {
-        zipOut.putNextEntry(new ZipEntry(fileName + "/"));
-        zipOut.write(new byte[0]);
-        zipOut.closeEntry();
-      }
+      var entryName = fileName.endsWith("/") ? fileName : fileName + "/";
+      zipOut.putNextEntry(new ZipEntry(entryName));
+      zipOut.write(new byte[0]);
+      zipOut.closeEntry();
       var children = fileToZip.listFiles();
       if (children != null) {
         for (var childFile : children) {
