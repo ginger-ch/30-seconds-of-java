@@ -33,14 +33,13 @@ import java.net.http.HttpResponse;
  * HttpGetSnippet.
  */
 public class HttpGetSnippet {
-
-    /**
-     * Performs HTTP GET request.
-     *
-     * @param uri the URI of the connection
-     * @return response object
-     * @throws Exception i/o error, interruption error, etc
-     */
+  /**
+  * Performs HTTP GET request.
+  *
+  * @param uri the URI of the connection
+  * @return response object
+  * @throws Exception i/o error, interruption error, etc
+  */
   public static HttpResponse<String> httpGet(String uri) throws Exception {
     try (var client = HttpClient.newHttpClient()) {
       var request = HttpRequest.newBuilder()
