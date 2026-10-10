@@ -25,13 +25,20 @@
 package array;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for 30 Seconds of Java code library.
  */
-public class ArraySumSnippetTest {
+class ArraySumSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ArraySumSnippet());
+  }
+
   /**
    * Tests for {@link ArraySumSnippet#arraySum(int[])}.
    */
