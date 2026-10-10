@@ -42,8 +42,9 @@ public class ZipDirectorySnippet {
    * @param srcDirectoryName The path to the directory to be zipped
    * @param zipFileName The location and name of the zipped file.
    * @throws IOException if an I/O error occurs
-   * */
-  public static void zipDirectory(String srcDirectoryName, String zipFileName) throws IOException {
+   */
+  public static void zipDirectory(String srcDirectoryName, String zipFileName)
+      throws IOException {
     var srcDirectory = new File(srcDirectoryName);
     try (
         var fileOut = new FileOutputStream(zipFileName);
@@ -54,35 +55,38 @@ public class ZipDirectorySnippet {
   }
 
   /**
-   * Utility function which either zips a single file, or recursively calls itself for 
+   * Utility function which either zips a single file, or recursively calls itself for
    * a directory to traverse down to the files contained within it.
    *
    * @param fileToZip The file as a resource
    * @param fileName The actual name of the file
    * @param zipOut The output stream to which all data is being written
-   * */
-  public static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) 
+   */
+  public static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut)
       throws IOException {
-    if (fileToZip.isHidden()) { // Ignore hidden files as standard
+    if (fileToZip.isHidden()) {
       return;
     }
     if (fileToZip.isDirectory()) {
       if (fileName.endsWith("/")) {
-        zipOut.putNextEntry(new ZipEntry(fileName)); // To be zipped next
+        zipOut.putNextEntry(new ZipEntry(fileName));
+        zipOut.write(new byte[0]);
         zipOut.closeEntry();
       } else {
-        // Add the "/" mark explicitly to preserve structure while unzipping action is performed
         zipOut.putNextEntry(new ZipEntry(fileName + "/"));
+        zipOut.write(new byte[0]);
         zipOut.closeEntry();
       }
       var children = fileToZip.listFiles();
-      for (var childFile : children) { // Recursively apply function to all children
-        zipFile(childFile, fileName + "/" + childFile.getName(), zipOut);
+      if (children != null) {
+        for (var childFile : children) {
+          zipFile(childFile, fileName + "/" + childFile.getName(), zipOut);
+        }
       }
       return;
     }
     try (
-        var fis = new FileInputStream(fileToZip) // Start zipping once we know it is a file
+        var fis = new FileInputStream(fileToZip)
     ) {
       var zipEntry = new ZipEntry(fileName);
       zipOut.putNextEntry(zipEntry);

@@ -38,6 +38,9 @@ tasks.named('sonarqube') {
     dependsOn test
 }
 
+jacoco {
+    toolVersion = "0.8.15"
+}
 jacocoTestReport {
     reports {
         xml.required = true
