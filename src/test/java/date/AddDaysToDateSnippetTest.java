@@ -24,26 +24,33 @@
 
 package date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for AddDaysToDateSnippet.
  */
-public class AddDaysToDateSnippetTest {
+class AddDaysToDateSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new AddDaysToDateSnippet());
+  }
 
   /**
-  * Test add days to date.
-  *
-  * @throws ParseException if date can't be parsed
-  *
-  */
+   * Test add days to date.
+   *
+   * @throws ParseException if date can't be parsed
+   */
   @Test
   void testAddDaysToDate() throws ParseException {
     DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
@@ -55,18 +62,20 @@ public class AddDaysToDateSnippetTest {
     Date dateAfterTwoDaysExpected = format.parse(dateStrAfter);
 
     Date dateAfterTwoDaysActual = AddDaysToDateSnippet.addDaysToDate(date, 2);
-    Assertions.assertEquals(dateAfterTwoDaysExpected, dateAfterTwoDaysActual);
+    assertEquals(dateAfterTwoDaysExpected, dateAfterTwoDaysActual);
+    assertNull(AddDaysToDateSnippet.addDaysToDate(null, 2));
   }
 
   /**
-  * Test add days to local date.
-  */
+   * Test add days to local date.
+   */
   @Test
   void testAddDaysToLocalDate() {
     LocalDate date = LocalDate.now();
     LocalDate dateAfterTwoDaysExpected = date.plusDays(2);
 
     LocalDate dateAfterTwoDaysActual = AddDaysToDateSnippet.addDaysToLocalDate(date, 2);
-    Assertions.assertEquals(dateAfterTwoDaysExpected, dateAfterTwoDaysActual);
+    assertEquals(dateAfterTwoDaysExpected, dateAfterTwoDaysActual);
+    assertNull(AddDaysToDateSnippet.addDaysToLocalDate(null, 2));
   }
 }
