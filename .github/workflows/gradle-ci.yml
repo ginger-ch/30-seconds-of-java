@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate Gradle wrapper
-        uses: docs/example-action@b16d2601a6b948e2fb26f3772276581f31daa7cd
+        uses: gradle/wrapper-validation-action@56b905477c32241c47d6924f2164c381ec7dd5cb
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
