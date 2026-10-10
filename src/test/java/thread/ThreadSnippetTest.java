@@ -25,16 +25,20 @@
 package thread;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.Test;
 
-
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ThreadSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ThreadSnippet());
+  }
 
   /**
    * Tests for {@link ThreadSnippet#createThread(Runnable)}.
@@ -52,6 +56,6 @@ class ThreadSnippetTest {
     t.start();
     t.join();
 
-    assertEquals(counter.get(), 1000000);
+    assertEquals(1000000, counter.get());
   }
 }
