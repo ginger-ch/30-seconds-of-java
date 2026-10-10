@@ -25,16 +25,15 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class HaversineFormulaSnippetTest {
-
   /**
    * Tests for {@link HaversineFormulaSnippet#findHaversineDistance(double, double, double,
    * double)}.
@@ -48,8 +47,32 @@ class HaversineFormulaSnippetTest {
     var distance2 = HaversineFormulaSnippet
         .findHaversineDistance(
             -17.947826, 177.221232, -16.603513, -179.779055
-     );
+        );
     assertEquals(351.9, distance2, 0.1);
+  }
+
+  @Test
+  void testFindHaversineDistanceInvalidLatitude() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(-91, 0, 0, 0));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(91, 0, 0, 0));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, -91, 0));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, 91, 0));
+  }
+
+  @Test
+  void testFindHaversineDistanceInvalidLongitude() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(0, -181, 0, 0));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(0, 181, 0, 0));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, 0, -181));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, 0, 181));
   }
 
   // Test for out of range inputs, as latitudes should be in range [-90,90] and longitudes in
