@@ -26,20 +26,26 @@ package thread;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.concurrent.ThreadPoolExecutor;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ThreadPoolTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ThreadPool());
+  }
+
   /**
    * Tests for {@link ThreadPool#createFixedThreadPool()}.
    */
   @Test
-  public void testCreateFixedThreadPool() {
+  void testCreateFixedThreadPool() {
     var numProcessors = Runtime.getRuntime().availableProcessors();
     var executorService = (ThreadPoolExecutor) ThreadPool.createFixedThreadPool();
     assertEquals(numProcessors, executorService.getCorePoolSize());
