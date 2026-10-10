@@ -25,14 +25,21 @@
 package file;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ListAllFilesSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ListAllFilesSnippet());
+  }
+
   /**
    * Tests for {@link ListAllFilesSnippet#listAllFiles(String)}.
    */
@@ -40,5 +47,8 @@ class ListAllFilesSnippetTest {
   void testListAllFiles() {
     var files = ListAllFilesSnippet.listAllFiles("src/test/resources");
     assertEquals(6, files.size());
+
+    var nonExistentFiles = ListAllFilesSnippet.listAllFiles("non/existent/path");
+    assertTrue(nonExistentFiles.isEmpty());
   }
 }
