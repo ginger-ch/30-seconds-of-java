@@ -24,25 +24,39 @@
 
 package array;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ArrayConcatSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ArrayConcatSnippet());
+  }
+
   /**
    * Tests for {@link ArrayConcatSnippet#arrayConcat(Object[], Object[])}.
    */
   @Test
   void testArrayConcat() {
     var integers = ArrayConcatSnippet.arrayConcat(new Integer[5], new Integer[5]);
-    assertEquals(integers.length, 10);
-    var strings = ArrayConcatSnippet.arrayConcat(new String[0], new String[0]);
-    assertEquals(strings.length, 0);
+    assertEquals(10, integers.length);
+
+    var strings1 = new String[] {"a", "b"};
+    var strings2 = new String[] {"c", "d"};
+    var concatenatedStrings = ArrayConcatSnippet.arrayConcat(strings1, strings2);
+    assertArrayEquals(new String[] {"a", "b", "c", "d"}, concatenatedStrings);
+
+    var emptyStrings = ArrayConcatSnippet.arrayConcat(new String[0], new String[0]);
+    assertEquals(0, emptyStrings.length);
+
     assertThrows(NullPointerException.class, () -> ArrayConcatSnippet.arrayConcat(null, null));
   }
 }
