@@ -25,25 +25,28 @@
 package date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
-
 class DateDifferenceSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new DateDifferenceSnippet());
+  }
 
   /**
    * Tests for {@link DateDifferenceSnippet#getYearsDifference(LocalDate, LocalDate)},
    * {@link DateDifferenceSnippet#getMonthsDifference(LocalDate, LocalDate)},
-   * {@link DateDifferenceSnippet#getDaysDifference(LocalDate, LocalDate)}.
+   * and {@link DateDifferenceSnippet#getDaysDifference(LocalDate, LocalDate)}.
    */
   @Test
-  void testAddDaysToDate() {
-
+  void testDateDifference() {
     var date1 = LocalDate.of(1998, 9, 24);
     var date2 = LocalDate.of(2023, 3, 22);
 
@@ -51,7 +54,9 @@ class DateDifferenceSnippetTest {
     assertEquals(293, DateDifferenceSnippet.getMonthsDifference(date1, date2));
     assertEquals(8945, DateDifferenceSnippet.getDaysDifference(date1, date2));
 
+    //Test reversed
+    assertEquals(24, DateDifferenceSnippet.getYearsDifference(date2, date1));
+    assertEquals(293, DateDifferenceSnippet.getMonthsDifference(date2, date1));
+    assertEquals(8945, DateDifferenceSnippet.getDaysDifference(date2, date1));
   }
-
-
 }
