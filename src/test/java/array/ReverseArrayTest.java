@@ -25,20 +25,24 @@
 package array;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
 /**
- * Tests for {@link ReverseArraySnippet#reverseArray(Object[], int, int)}}.
+ * Tests for {@link ReverseArraySnippet#reverseArray(Object[], int, int)}.
  */
-
 class ReverseArrayTest {
 
+  @Test
+  void testConstructor() {
+    assertNotNull(new ReverseArraySnippet());
+  }
 
-  /** reverseArray should correctly reverse the entire array. **/
-
+  /**
+   * ReverseArray should correctly reverse the entire array.
+   */
   @Test
   void testReverseArrayFull() {
     Integer[] arr = {1, 2, 3, 4, 5};
@@ -46,8 +50,6 @@ class ReverseArrayTest {
     Integer[] expected = {5, 4, 3, 2, 1};
     assertArrayEquals(expected, result);
   }
-
-  /** reverseArray should correctly reverse a subset of the array. **/
 
   @Test
   void testReverseArrayPartial() {
@@ -57,8 +59,6 @@ class ReverseArrayTest {
     assertArrayEquals(expected, result);
   }
 
-  /** reverseArray should correctly reverse a subset of the array with decimal values. **/
-
   @Test
   void testReverseArrayDecimal() {
     Double[] arr = {5.5, 4.4, 3.3, 2.2, 1.1};
@@ -66,8 +66,6 @@ class ReverseArrayTest {
     Double[] expected = {5.5, 4.4, 1.1, 2.2, 3.3};
     assertArrayEquals(expected, result);
   }
-
-  /** reverseArray should correctly handle a single element array. **/
 
   @Test
   void testReverseArraySingleElement() {
@@ -77,8 +75,6 @@ class ReverseArrayTest {
     assertArrayEquals(expected, result);
   }
 
-  /** reverseArray should correctly handle an empty array. **/
-
   @Test
   void testReverseArrayEmpty() {
     Integer[] arr = new Integer[0];
@@ -86,8 +82,6 @@ class ReverseArrayTest {
     Integer[] expected = new Integer[0];
     assertArrayEquals(expected, result);
   }
-
-  /** reverseArray when start and end are equal. **/
 
   @Test
   void testReverseArrayNoChange() {
@@ -98,40 +92,30 @@ class ReverseArrayTest {
     assertArrayEquals(array, reversedArray);
   }
 
-  /** reverseArray should throw ArrayIndexOutOfBoundsException if startIndex is less than 0. **/
-
   @Test
   void testReverseArrayNegativeStartIndex() {
     Integer[] arr = {1, 2, 3, 4, 5};
     assertThrows(ArrayIndexOutOfBoundsException.class, () ->
-            ReverseArraySnippet.reverseArray(arr, -1, 3));
+        ReverseArraySnippet.reverseArray(arr, -1, 3));
   }
-
-  /** reverseArray should throw ArrayIndexOutOfBoundsException if endIndex
-  *  is greater than the array size minus 1. **/
 
   @Test
   void testReverseArrayEndIndexOutOfBounds() {
     Integer[] arr = {1, 2, 3, 4, 5};
-    assertThrows(ArrayIndexOutOfBoundsException.class,
-            () -> ReverseArraySnippet.reverseArray(arr, 2, 5));
+    assertThrows(ArrayIndexOutOfBoundsException.class, () ->
+        ReverseArraySnippet.reverseArray(arr, 2, 5));
   }
-
-  /** reverseArray should throw ArrayIndexOutOfBoundsException
-  * if startIndex is greater than endIndex. **/
 
   @Test
   void testReverseArrayInvalidIndexes() {
     Integer[] arr = {1, 2, 3, 4, 5};
-    assertThrows(IllegalArgumentException.class, () -> ReverseArraySnippet.reverseArray(arr, 3, 2));
+    assertThrows(IllegalArgumentException.class, () ->
+        ReverseArraySnippet.reverseArray(arr, 3, 2));
   }
-
-  /** reverseArray should throw IllegalArgumentException if the input array is null. */
 
   @Test
-  void  testReverseArrayNullInput() {
+  void testReverseArrayNullInput() {
     assertThrows(IllegalArgumentException.class, () ->
-            ReverseArraySnippet.reverseArray(null, 0, 2));
+        ReverseArraySnippet.reverseArray(null, 0, 2));
   }
-
 }
