@@ -26,18 +26,23 @@ package io;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class InputStreamToStringSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new InputStreamToStringSnippet());
+  }
+
   /**
    * Tests for {@link InputStreamToStringSnippet#inputStreamToString(InputStream)}.
    */
@@ -45,17 +50,17 @@ class InputStreamToStringSnippetTest {
   void testInputStreamToString() throws IOException {
     String newLine = System.getProperty("line.separator");
     String str = new StringBuilder()
-            .append("ąćśź").append(newLine)
-            .append("←≠²³¢²€").append(newLine)
-            .append("июля").append(newLine)
-            .append("åøä").append(newLine)
-            .append("ñí").append(newLine)
-            .append("7月15日起").append(newLine)
-            .append("خەيرلىك ئەتىگەن!")
-            .toString();
+        .append("ąćśź").append(newLine)
+        .append("←≠²³¢²€").append(newLine)
+        .append("июля").append(newLine)
+        .append("åøä").append(newLine)
+        .append("ñí").append(newLine)
+        .append("7月15日起").append(newLine)
+        .append("خەيرلىك ئەتىگەن!")
+        .toString();
     assertEquals(str, InputStreamToStringSnippet.inputStreamToString(
-            new FileInputStream("src/test/resources/dir1/placeholder.txt")));
+        new FileInputStream("src/test/resources/dir1/placeholder.txt")));
     assertNotEquals(str.toUpperCase(), InputStreamToStringSnippet.inputStreamToString(
-            new FileInputStream("src/test/resources/dir1/placeholder.txt")));
+        new FileInputStream("src/test/resources/dir1/placeholder.txt")));
   }
 }
