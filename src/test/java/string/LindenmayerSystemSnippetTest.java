@@ -25,30 +25,32 @@
 package string;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class LindenmayerSystemSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new LindenmayerSystemSnippet());
+  }
 
   /**
    * Tests for {@link LindenmayerSystemSnippet#generateLindenmayerSystem(String, Map, int)}.
    */
   @Test
-  public void testGenerateLindenmayerSystems() {
+  void testGenerateLindenmayerSystems() {
     String axiom = "A";
-
 
     Map<Character, String> productionRules = new HashMap<>();
     productionRules.put('A', "AB");
     productionRules.put('B', "A");
-
 
     assertEquals(
         "AB",

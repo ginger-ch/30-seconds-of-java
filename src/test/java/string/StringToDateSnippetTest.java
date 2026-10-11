@@ -25,16 +25,22 @@
 package string;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.text.ParseException;
 import java.util.Calendar;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class StringToDateSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new StringToDateSnippet());
+  }
+
   /**
    * Tests for {@link StringToDateSnippet#stringToDate(String, String)}.
    */

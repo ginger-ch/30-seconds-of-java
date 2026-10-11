@@ -25,21 +25,25 @@
 package string;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
-
 class MaxCharacterCountSnippetTest {
 
-  /**
-     * Tests for {@link MaxCharacterCountSnippet#getMaxCharacterCount(String, char)}.
-    */
   @Test
-  void testgetMaxCharacterCount() {
+  void testConstructor() {
+    assertNotNull(new MaxCharacterCountSnippet());
+  }
+
+  /**
+   * Tests for {@link MaxCharacterCountSnippet#getMaxCharacterCount(String, char)}.
+   */
+  @Test
+  void testGetMaxCharacterCount() {
     assertEquals(5, MaxCharacterCountSnippet.getMaxCharacterCount("dddddsgddvcidd", 'd'));
     assertEquals(4, MaxCharacterCountSnippet.getMaxCharacterCount("bbkfgjhgjkbbbb", 'b'));
     assertEquals(6, MaxCharacterCountSnippet.getMaxCharacterCount("saalallaaaaaala", 'a'));
@@ -47,6 +51,4 @@ class MaxCharacterCountSnippetTest {
     assertEquals(0, MaxCharacterCountSnippet.getMaxCharacterCount("kdfjgkfjggjgg", 'v'));
     assertEquals(3, MaxCharacterCountSnippet.getMaxCharacterCount("massmmmajtim", 'm'));
   }
-
-
 }

@@ -25,15 +25,21 @@
 package string;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class AnagramSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new AnagramSnippet());
+  }
+
   /**
    * Tests for {@link AnagramSnippet#isAnagram(String, String)}.
    */
