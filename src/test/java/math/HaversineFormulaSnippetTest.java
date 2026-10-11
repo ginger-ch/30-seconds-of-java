@@ -26,17 +26,23 @@ package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for 30 Seconds of Java code library.
  */
 class HaversineFormulaSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new HaversineFormulaSnippet());
+  }
+
   /**
-   * Tests for {@link HaversineFormulaSnippet#findHaversineDistance(double, double, double,
-   * double)}.
+   * Tests for {@link HaversineFormulaSnippet#findHaversineDistance(double,
+   * double, double, double)}.
    */
   @Test
   void testFindHaversineDistance() {
@@ -53,35 +59,31 @@ class HaversineFormulaSnippetTest {
 
   @Test
   void testFindHaversineDistanceInvalidLatitude() {
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(-91, 0, 0, 0));
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(91, 0, 0, 0));
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, -91, 0));
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, 91, 0));
   }
 
   @Test
   void testFindHaversineDistanceInvalidLongitude() {
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(0, -181, 0, 0));
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(0, 181, 0, 0));
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, 0, -181));
-    Assertions.assertThrows(IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> HaversineFormulaSnippet.findHaversineDistance(0, 0, 0, 181));
   }
 
-  // Test for out of range inputs, as latitudes should be in range [-90,90] and longitudes in
-  // [-180,180]
   @Test
   void testFindHaversineDistanceInvalidRange() {
-    Assertions.assertThrows(IllegalArgumentException.class,
-        () -> {
-          HaversineFormulaSnippet.findHaversineDistance(666, 0, 0, 0);
-        });
+    assertThrows(IllegalArgumentException.class,
+        () -> HaversineFormulaSnippet.findHaversineDistance(666, 0, 0, 0));
   }
 }

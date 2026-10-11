@@ -25,11 +25,22 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+/**
+ * Tests for 30 Seconds of Java code library.
+ */
 class LuhnSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new LuhnSnippet());
+  }
 
   @CsvSource({
     "0, 0",
@@ -86,5 +97,4 @@ class LuhnSnippetTest {
   void testLuhnCalculateChecksum(long num, int expectedChecksum) {
     assertEquals(expectedChecksum, LuhnSnippet.calculateLuhnChecksum(num));
   }
-
 }

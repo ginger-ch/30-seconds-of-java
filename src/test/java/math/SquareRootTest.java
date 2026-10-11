@@ -25,18 +25,25 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for 30 Seconds of Java code library.
  */
-public class SquareRootTest {
+class SquareRootTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new SquareRoot());
+  }
+
   /**
-   * Test for {@link SquareRoot #SquareRoot(int,int)}.
+   * Test for {@link SquareRoot#sqrt(int, int)}.
    */
   @Test
-    void test_sqrt() {
+  void testSqrt() {
     assertEquals(6.0, SquareRoot.sqrt(36, 1));
     assertEquals(6.324555319999993, SquareRoot.sqrt(40, 9));
     assertEquals(6.707999999999995, SquareRoot.sqrt(45, 3));

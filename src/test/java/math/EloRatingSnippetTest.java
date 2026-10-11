@@ -25,23 +25,27 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class EloRatingSnippetTest {
 
   static final double DELTA = 0.01; // Add tolerance for floating point calculations
 
+  @Test
+  void testConstructor() {
+    assertNotNull(new EloRatingSnippet());
+  }
+
   /**
-   * Tests for {@link #calculateMatchRating(double, double, double)}.
+   * Tests for {@link EloRatingSnippet#calculateMatchRating(double, double, double)}.
    */
   @Test
   void testSingleMatchRatings() {
-
     //No rating change for draw between players of equal strength
     assertEquals(1500.0, EloRatingSnippet.calculateMatchRating(1500, 1500, 0.5), DELTA);
 

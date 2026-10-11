@@ -25,22 +25,27 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import math.DiceThrow.DiceSides;
 import org.junit.jupiter.api.Test;
 
 /**
-* Tests for 30 Seconds of Java code library.
-*/
+ * Tests for 30 Seconds of Java code library.
+ */
 class DiceThrowTest {
 
+  @Test
+  void testConstructor() {
+    assertNotNull(new DiceThrow());
+  }
+
   /**
-  * Tests for {@link DiceThrow #throwDice(int, DiceSides)}.
-  */
+   * Tests for {@link DiceThrow#throwDice(int, DiceSides)}.
+   */
   @Test
   void testThrowDice() {
-    // Test for Dice throw
     assertTrue(DiceThrow.throwDice(3, DiceSides.SIX) <= 18);
     assertTrue(DiceThrow.throwDice(2, DiceSides.FOUR) <= 8);
     assertTrue(DiceThrow.throwDice(3, DiceSides.EIGHT) <= 24);
@@ -48,6 +53,5 @@ class DiceThrowTest {
     assertTrue(DiceThrow.throwDice(1, DiceSides.TWELVE) <= 12);
     assertTrue(DiceThrow.throwDice(2, DiceSides.TWENTY) <= 40);
     assertEquals(0, DiceThrow.throwDice(0, DiceSides.FOUR));
-
   }
 }

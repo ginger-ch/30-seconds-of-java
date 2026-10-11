@@ -25,18 +25,25 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
 /**
-* Tests for 30 Seconds of Java code library.
-*/
-public class EvenOddTest {
-  /**
-  * Test for {@link EvenOdd #EvenOdd(int)}.
-  */
+ * Tests for 30 Seconds of Java code library.
+ */
+class EvenOddTest {
+
   @Test
-    void test_evenOdd() {
+  void testConstructor() {
+    assertNotNull(new EvenOdd());
+  }
+
+  /**
+   * Test for {@link EvenOdd#evenodd(int)}.
+   */
+  @Test
+  void testEvenOdd() {
     assertEquals("even", EvenOdd.evenodd(4));
     assertEquals("even", EvenOdd.evenodd(0));
     assertEquals("odd", EvenOdd.evenodd(97));
