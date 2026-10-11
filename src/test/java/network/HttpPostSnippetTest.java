@@ -26,16 +26,22 @@ package network;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class HttpPostSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new HttpPostSnippet());
+  }
+
   /**
    * Tests for {@link HttpPostSnippet#httpPost(String, HashMap)}.
    */
@@ -44,8 +50,8 @@ class HttpPostSnippetTest {
     HashMap<String, String> arguments = new HashMap<>();
     arguments.put("data", "Hello World");
     var result = HttpPostSnippet.httpPost("https://postman-echo.com/post", arguments);
-    //This postman endpoint echoes the HTTP headers, request parameters, the contents
-    //of the request body and the complete URI requested.
+    // This postman endpoint echoes the HTTP headers, request parameters, the contents
+    // of the request body and the complete URI requested.
     var echoedData = "\"data\":\"Hello World\"";
     assertThat(result.body(), containsString(echoedData));
   }
