@@ -25,18 +25,26 @@
 package array;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for 30 Seconds of Java code library.
  */
-public class ArrayModeInPlaceSnippetTest {
-  /**
-  * Test for {@link ArrayModeInPlaceSnippet #ArrayModeInPlaceSnippet(int[])}.
-  */
+class ArrayModeInPlaceSnippetTest {
+
   @Test
-    void testModeArray() {
+  void testConstructor() {
+    assertNotNull(new ArrayModeInPlaceSnippet());
+  }
+
+  /**
+   * Test for {@link ArrayModeInPlaceSnippet#modeArrayInPlace(int[])}.
+   */
+  @Test
+  void testModeArray() {
+    assertEquals(0, ArrayModeInPlaceSnippet.modeArrayInPlace(new int[]{}));
     assertEquals(2, ArrayModeInPlaceSnippet.modeArrayInPlace(new int[]{1, 2, 3, 2, 4, 2, 2}));
     assertEquals(-8, ArrayModeInPlaceSnippet.modeArrayInPlace(new int[]{-43, -8, -8, -10, -8, -6}));
     assertEquals(0, ArrayModeInPlaceSnippet.modeArrayInPlace(new int[]{-4, 0, -2, -1, 0}));
