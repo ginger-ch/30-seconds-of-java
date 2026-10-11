@@ -24,6 +24,7 @@
 
 package file;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -32,18 +33,24 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ZipFilesSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ZipFilesSnippet());
+  }
+
   /**
    * Tests for {@link ZipFilesSnippet#zipFiles(String[], String)}.
    */
   @Test
   void testZipFiles() throws IOException {
-    final String[] srcFilenames = {"src/test/resources/somelines.txt",
-        "src/test/resources/someotherlines.txt"
+    final String[] srcFilenames = {
+      "src/test/resources/somelines.txt",
+      "src/test/resources/someotherlines.txt"
     };
     final var dst = "src/test/resources/multiple.zip";
     try {

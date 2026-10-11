@@ -24,6 +24,7 @@
 
 package file;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -32,11 +33,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class ZipFileSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new ZipFileSnippet());
+  }
+
   /**
    * Tests for {@link ZipFileSnippet#zipFile(String, String)}.
    */
