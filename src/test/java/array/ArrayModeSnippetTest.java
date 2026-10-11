@@ -25,7 +25,10 @@
 package array;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -33,8 +36,17 @@ import org.junit.jupiter.api.Test;
  * Tests for 30 Seconds of Java code library.
  */
 class ArrayModeSnippetTest {
+
+  @Test
+  void testConstructor() throws NoSuchMethodException {
+    var constructor = ArrayModeSnippet.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    var exception = assertThrows(InvocationTargetException.class, constructor::newInstance);
+    assertTrue(exception.getCause() instanceof IllegalStateException);
+  }
+
   /**
-   * Test for {@link ArrayModeSnippet #ArrayModeSnippet(int[])}.
+   * Test for {@link ArrayModeSnippet#modeArray(int[])}.
    */
   @Test
   void testModeArray() {
