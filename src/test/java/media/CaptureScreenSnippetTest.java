@@ -24,6 +24,7 @@
 
 package media;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.AWTException;
@@ -33,11 +34,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class CaptureScreenSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new CaptureScreenSnippet());
+  }
+
   /**
    * Tests for {@link CaptureScreenSnippet#captureScreen(String)}.
    */
