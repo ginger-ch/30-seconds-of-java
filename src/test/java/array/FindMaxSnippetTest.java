@@ -36,7 +36,7 @@ class FindMaxSnippetTest {
 
   @Test
   void testConstructor() throws Exception {
-    var constructor = FindMinSnippet.class.getDeclaredConstructor();
+    var constructor = FindMaxSnippet.class.getDeclaredConstructor();
     constructor.setAccessible(true);
     var instance = constructor.newInstance();
     assertNotNull(instance);
