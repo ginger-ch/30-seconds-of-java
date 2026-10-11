@@ -24,20 +24,26 @@
 
 package algorithm;
 
- import static org.junit.jupiter.api.Assertions.assertEquals;
- 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
- 
-/*
-  * Tests for 30 Seconds of Java code library
-  *
-  */
+
+/**
+ * Tests for 30 Seconds of Java code library.
+ */
 class MergeSortSnippetTest {
-  /**
-    * Tests for {@link MergeSortSnippet#mergeSort(int[], int, int)}.
-    */
+
   @Test
-   void testMergeSort() {
+  void testConstructor() {
+    assertNotNull(new MergeSortSnippet());
+  }
+
+  /**
+   * Tests for {@link MergeSortSnippet#mergeSort(int[], int, int)}.
+   */
+  @Test
+  void testMergeSort() {
     var arr = new int[] {7, 13, 3, 1, 8, 5};
     MergeSortSnippet.mergeSort(arr, 0, arr.length - 1);
     assertEquals(6, arr.length);

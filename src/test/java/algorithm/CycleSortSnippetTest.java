@@ -25,17 +25,23 @@
 package algorithm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-
 /**
-  * Tests for 30 Seconds of Java code library.
-  */
-public class CycleSortSnippetTest {
+ * Tests for 30 Seconds of Java code library.
+ */
+class CycleSortSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new CycleSortSnippet());
+  }
+
   /**
-    * Test for {@link CycleSortSnippet#cycleSort(int[])}.
-    */
+   * Test for {@link CycleSortSnippet#cycleSort(int[])}.
+   */
   @Test
   void testCycleSort() {
     var arr = new int[] {6, 3, 1, 5, 4, 2};
@@ -48,5 +54,4 @@ public class CycleSortSnippetTest {
     assertEquals(5, arr[4]);
     assertEquals(6, arr[5]);
   }
-    
 }

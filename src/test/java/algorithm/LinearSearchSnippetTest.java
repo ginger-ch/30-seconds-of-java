@@ -25,19 +25,23 @@
 package algorithm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class LinearSearchSnippetTest {
 
-  /**
-     * Tests for {@link LinearSearchSnippet#linearSearch(int[], int)}.
-   */
+  @Test
+  void testConstructor() {
+    assertNotNull(new LinearSearchSnippet());
+  }
 
+  /**
+   * Tests for {@link LinearSearchSnippet#linearSearch(int[], int)}.
+   */
   @Test
   void testLinearSearch() {
     int[] arr = new int[]{220, 33, 11, 4, 45, 1, 8, 5, 7, 23, 8, 56, 3, 12};
@@ -49,5 +53,4 @@ class LinearSearchSnippetTest {
     int[] arr3 = new int[]{4, 9, 1, 7, 33, 100, 11, 106};
     assertEquals(-1, LinearSearchSnippet.linearSearch(arr3, 6));
   }
-
 }

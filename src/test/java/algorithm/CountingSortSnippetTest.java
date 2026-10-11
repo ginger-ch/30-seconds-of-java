@@ -26,14 +26,20 @@ package algorithm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class CountingSortSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new CountingSortSnippet());
+  }
+
   /**
    * Tests for {@link CountingSortSnippet#countingSort(int[])}.
    */
