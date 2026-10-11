@@ -35,8 +35,11 @@ import org.junit.jupiter.api.Test;
 class FindMaxSnippetTest {
 
   @Test
-  void testConstructor() {
-    assertNotNull(new FindMaxSnippet());
+  void testConstructor() throws Exception {
+    var constructor = FindMinSnippet.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    var instance = constructor.newInstance();
+    assertNotNull(instance);
   }
 
   /**
