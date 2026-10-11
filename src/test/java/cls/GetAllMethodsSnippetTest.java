@@ -24,15 +24,21 @@
 
 package cls;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class GetAllMethodsSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new GetAllMethodsSnippet());
+  }
+
   /**
    * Tests for {@link GetAllMethodsSnippet#getAllMethods(Class)}.
    */

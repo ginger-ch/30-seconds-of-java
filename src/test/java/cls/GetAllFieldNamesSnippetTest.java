@@ -25,17 +25,23 @@
 package cls;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for 30 Seconds of Java code library
- *
+/**
+ * Tests for 30 Seconds of Java code library.
  */
 class GetAllFieldNamesSnippetTest {
+
+  @Test
+  void testConstructor() {
+    assertNotNull(new GetAllFieldNamesSnippet());
+  }
+
   /**
-   *  Tests for {@link GetAllFieldNamesSnippet#getAllFieldNames(Class)}.
+   * Tests for {@link GetAllFieldNamesSnippet#getAllFieldNames(Class)}.
    */
   @Test
   void testGetAllFieldNames() {
